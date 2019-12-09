@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import ReactTestUtils from 'react-dom/test-utils'; 
 import Joke from '../joke';
 import JokeGenerator from '../jokeGenerator';
 
@@ -16,6 +17,12 @@ test("Joke component receives props and then renders text", () => {
 });
 
 test("'JokeGenerator' component fetches a random joke and renders it", () => {
-	const { getByText } = render(<JokeGenerator />);
+	const { getByText, queryByText } = render(<JokeGenerator />);
 	expect(getByText("You haven't loaded any joke yet!")).toBeInTheDocument();
+
+	ReactTestUtils.Simulate.click(getByText("Load a random joke"));
+
+	expect(queryByText("You haven't loaded a joke yet!")).not.toBeInTheDocument();
+
+	expect(queryByText("Loading...")).toBeInTheDocument();
 });
