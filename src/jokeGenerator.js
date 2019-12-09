@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import Joke from './joke';
 
 export default class JokeGenerator extends React.Component {
 	state = {
@@ -8,6 +10,10 @@ export default class JokeGenerator extends React.Component {
 
 	loadJoke = async () => {
 		this.setState({loading: true});
+		
+		const { data: { value: { joke } } } = await axios.get("https://api.icndb.com/jokes/random");
+
+		this.setState({loading: false, joke});
 	};
 
 	render() {
@@ -15,7 +21,8 @@ export default class JokeGenerator extends React.Component {
 
 		return (
 		       <React.Fragment>
-		         {!joke && <div>You haven't loaded any joke yet!</div>}
+					   {!joke && <div>You haven't loaded any joke yet!</div>}
+		         {joke && !loading && <Joke text={joke} />}
 						 {loading && <div>Loading...</div>}
 
 						 <button onClick={this.loadJoke} type="button">
