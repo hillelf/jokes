@@ -1,5 +1,17 @@
 .App {
-  text-align: center;
+	display: grid;
+	grid-template-columns: 20% 60% 20%;
+	grid-template-rows: 20% 80%;
+
+	.leftCol {
+		background-color: gray;
+		grid-row-end: 3;
+	}
+
+	.rightCol {
+		background-color: gray;
+		grid-row-end: 3;
+	}
 }
 
 .App-logo {

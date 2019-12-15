@@ -3,32 +3,43 @@ import axios from 'axios';
 import Joke from './joke';
 
 export default class JokeGenerator extends React.Component {
-	state = {
-		joke: null,
-		loading: false
-	};
+  state = {
+    joke: null,
+    loading: false
+  };
 
-	loadJoke = async () => {
-		this.setState({loading: true});
-		
-		const { data: { value: { joke } } } = await axios.get("https://api.icndb.com/jokes/random");
+  loadJoke = async () => {
+    this.setState({loading: true});
+    
+    // const { data: { value: { joke } } } = await axios.get("https://api.icndb.com/jokes/random");
 
-		this.setState({loading: false, joke});
-	};
+    const config = {
+        method: 'get',
+        url: 'https://icanhazdadjoke.com/',
+        headers: { 'Content-Type': 'application/json' }
+    };
 
-	render() {
-		const { joke, loading } = this.state;
+    let resp = await axios.get(config).catch((error) => {
+       console.log(error);
+    });
 
-		return (
-		       <React.Fragment>
-					   {!joke && <div>You haven't loaded any joke yet!</div>}
-		         {joke && !loading && <Joke text={joke} />}
-						 {loading && <div>Loading...</div>}
+    let data = resp && resp.data;
+    this.setState({loading: false, data});
+  };
 
-						 <button onClick={this.loadJoke} type="button">
-						   Load a random joke
-						 </button>
-		       </React.Fragment>
-		);
-	};
-};
+  render() {
+    const { joke, loading } = this.state;
+
+    return (
+           <React.Fragment>
+             {!joke && <div>You haven&apos;t loaded any joke yet!</div>}
+             {joke && !loading && <Joke text={joke} />}
+             {loading && <div>Loading...</div>}
+
+             <button onClick={this.loadJoke} type="button">
+               Load a random joke
+             </button>
+           </React.Fragment>
+    );
+  }
+}
