@@ -3,5 +3,5 @@ import React from 'react';
 
 // eslint-disable-next-line react/display-name
 export default ({text}) => (
-	<div data-testid="joke-text">{text}</div>
+	<div data-testid="joke-text" className="joke">{text}</div>
 );

@@ -21,13 +21,15 @@ export default class JokeGenerator extends React.Component {
 
     return (
            <React.Fragment>
+						 <button onClick={this.loadJoke} type="button">
+							  Load a random joke
+						 </button>
+						 <br />
+						 <br />
+
              {!joke && <div>You haven&apos;t loaded any joke yet!</div>}
              {joke && !loading && <Joke text={joke} />}
              {loading && <div>Loading...</div>}
-
-             <button onClick={this.loadJoke} type="button">
-               Load a random joke
-             </button>
            </React.Fragment>
     );
   }
