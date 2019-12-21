@@ -6,11 +6,12 @@ import JokeGenerator from './jokeGenerator';
 function App() {
   return (
     <div className="App">
-      <div className="leftCol"></div>
-      <div className="mainCol">
-            <JokeGenerator />
+		  <h1>Poems, Jokes and Webcams.</h1>
+      <div>Poem generator - coming soon!</div>
+      <div>
+      	<JokeGenerator />
       </div>
-      <div className="rightCol"></div>
+      <div></div>
     </div>
   );
 }

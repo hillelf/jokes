@@ -1,17 +1,46 @@
+body {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	line-height: 1.4em;
+}
+
+button {
+	background-color: #4b5052;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: .7em;
+	outline: 0;
+}
+
+button:active {
+	background-color: #2b3442;
+}
+
 .App {
 	display: grid;
-	grid-template-columns: 20% 60% 20%;
-	grid-template-rows: 20% 80%;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1em;
+	grid-auto-rows: minmax(150px, auto);
+	justify-items: stretch;
+	align-items: stretch	;
+}
 
-	.leftCol {
-		background-color: gray;
-		grid-row-end: 3;
-	}
+h1 {
+	grid-column: 1/4;
+	align-self: center;
+	justify-self: center;
+}
 
-	.rightCol {
-		background-color: gray;
-		grid-row-end: 3;
-	}
+.App > div {
+	display: inline-grid;
+	justify-items: center;
+	align-items: start;
+	padding: 1em;
+	background: #eee;
+}
+
+.App > div:nth-child(even) {
+	background: #ddd;
 }
 
 .App-logo {
