@@ -40,8 +40,6 @@ test("'JokeGenerator' component fetches a random joke and renders it", async () 
   expect(queryByText("Loading...")).toBeInTheDocument();
 
   await wait(() => expect(queryByText("Loading...")).not.toBeInTheDocument()); 
-  
 
-  expect(queryByTestId("joke-text")).toBeInTheDocument();
-  
+  expect(getByText("You haven't loaded any joke yet!")).toBeInTheDocument();
 });
