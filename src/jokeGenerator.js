@@ -11,7 +11,7 @@ export default class JokeGenerator extends React.Component {
   loadJoke = async () => {
     this.setState({loading: true});
     
-	  const { data: { joke } } = await axios.get('https://icanhazdadjoke.com/', { headers: {"Accept": "application/json"} });
+    const { data: { joke } } = await axios.get('https://icanhazdadjoke.com/', { headers: {"Accept": "application/json"} });
 
     this.setState({loading: false, joke});
   };
@@ -21,11 +21,11 @@ export default class JokeGenerator extends React.Component {
 
     return (
            <React.Fragment>
-						 <button onClick={this.loadJoke} type="button">
-							  Load a random joke
-						 </button>
-						 <br />
-						 <br />
+             <button onClick={this.loadJoke} type="button">
+                Load a random joke
+             </button>
+             <br />
+             <br />
 
              {!joke && <div>You haven&apos;t loaded any joke yet!</div>}
              {joke && !loading && <Joke text={joke} />}

@@ -6,10 +6,10 @@ import JokeGenerator from './jokeGenerator';
 function App() {
   return (
     <div className="App">
-		  <h1>Poems, Jokes and Webcams.</h1>
+      <h1>Poems, Jokes and Webcams.</h1>
       <div>Poem generator - coming soon!</div>
       <div>
-      	<JokeGenerator />
+        <JokeGenerator />
       </div>
       <div></div>
     </div>

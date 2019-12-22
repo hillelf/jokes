@@ -30,7 +30,7 @@ test("'JokeGenerator' component fetches a random joke and renders it", async () 
     }
   });
 
-  const { getByText, queryByText, queryByTestId } = render(<JokeGenerator />);
+  const { getByText, queryByText } = render(<JokeGenerator />);
   expect(getByText("You haven't loaded any joke yet!")).toBeInTheDocument();
 
   ReactTestUtils.Simulate.click(getByText("Load a random joke"));
