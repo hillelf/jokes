@@ -2,12 +2,12 @@ import React from 'react';
 import { render, wait } from '@testing-library/react';
 import ReactTestUtils from 'react-dom/test-utils';
 import * as axios from "axios";
-import MockAxios from "axios-mock-adapter";
+import MockAdapter from "axios-mock-adapter";
 
 import Joke from '../joke';
 import JokeGenerator from '../jokeGenerator';
 
-const mock = new MockAxios(axios, { delayResponse: Math.random() * 500});
+const mock = new MockAdapter(axios, { delayResponse: Math.random() * 500});
 
 afterAll( () => mock.restore());
 

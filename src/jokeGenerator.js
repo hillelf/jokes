@@ -11,7 +11,7 @@ export default class JokeGenerator extends React.Component {
   loadJoke = async () => {
     this.setState({loading: true});
     
-    const { data: { joke } } = await axios.get('https://icanhazdadjoke.com/', { headers: {"Accept": "application/json"} });
+			const { data: { joke } } = await axios.get('https://icanhazdadjoke.com/', { headers: {"Accept": "application/json"} });
 
     this.setState({loading: false, joke});
   };
