@@ -6,15 +6,6 @@ module.exports = function (app){
     proxy({
       "target": 'https://www.poemist.com',
       "changeOrigin": true,
-      "cookieDomainRewrite": "localhost",
-      "secure": false,
-      "headers": {
-             "host": "www.poemist.com",
-             "origin": null
-         },
-      "onProxyReq": function(proxyReq, req, res) {
-             proxyReq.setHeader('accept-encoding', 'identity')
-         },
     })
   );
 };
