@@ -2,12 +2,15 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import JokeGenerator from './jokeGenerator';
+import PoemGenerator from './poemGenerator';
 
 function App() {
   return (
     <div className="App">
       <h1>Poems, Jokes and Webcams.</h1>
-      <div>Poem generator - coming soon!</div>
+      <div>
+			  <PoemGenerator />
+			</div>
       <div>
         <JokeGenerator />
       </div>

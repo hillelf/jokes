@@ -2,6 +2,9 @@
 import React from 'react';
 
 // eslint-disable-next-line react/display-name
-export default ({text}) => (
-	<div data-testid="poem-text" className="poem">{text}</div>
+export default ({poem}) => (
+	<div data-testid="poem-text" className="poem">
+	  <p><strong>{poem.title}</strong><br />by {poem.poet.name}</p>
+		<p><pre>{poem.content}</pre></p>
+	</div>
 );

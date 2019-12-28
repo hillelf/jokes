@@ -45,14 +45,14 @@ test("'PoemGenerator' component fetches a random poem and renders it", async () 
     },
 	];
 
-  // mock.onGet().replyOnce(200, { poemResponse });
+  mock.onGet().replyOnce(200, { poemResponse });
 
-  // const { getByText, queryByText } = render(<PoemGenerator />);
-  // expect(getByText("You haven't loaded any poems yet!")).toBeInTheDocument();
+  const { getByText, queryByText } = render(<PoemGenerator />);
+  expect(getByText("You haven't loaded any poems yet!")).toBeInTheDocument();
 
-  // ReactTestUtils.Simulate.click(getByText("Load a random poem"));
+  ReactTestUtils.Simulate.click(getByText("Load a random poem"));
 
-  // expect(queryByText("You haven't loaded any poems yet!")).not.toBeInTheDocument();
+  expect(queryByText("You haven't loaded any poems yet!")).not.toBeInTheDocument();
 
   // expect(queryByText("Loading...")).toBeInTheDocument();
 
