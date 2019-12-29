@@ -11,16 +11,24 @@ const mock = new MockAdapter(axios, { delayResponse: Math.random() * 500});
 
 afterAll( () => mock.restore());
 
-test("Poem component receives props and then renders text", () => {
+test("Poem component receives props and then renders poem", () => {
   //Renders Joke component with some text prop.
+
+
+  const aPoem = { title: "He Parts Himself—like Leaves -",
+                content: "He parts Himself—like Leaves /n And then—He closes up /n Then stands upon the Bonnet",
+                poet: {
+                  author: "Emily Dickinson"
+                }
+  };
   
   const { getByTestId } = render(
-    <Poem text="The coolest poem ever." />
+    <Poem poem={aPoem} />
   );
 
    //Expects Poem component to render correct text.
    const el = getByTestId("poem-text");
-   expect(el.innerHTML).toBe("The coolest poem ever.");
+   expect(el.innerHTML).toBe("<p><strong>He Parts Himself—like Leaves -</strong><br>by </p><pre>He parts Himself—like Leaves /n And then—He closes up /n Then stands upon the Bonnet</pre>");
 });
 
 test("'PoemGenerator' component fetches a random poem and renders it", async () => {
@@ -43,23 +51,18 @@ test("'PoemGenerator' component fetches a random poem and renders it", async () 
             "url": "https://www.poemist.com/alfred-thomas-chandler"
         }
     },
-	];
+  ];
 
   mock.onGet().replyOnce(200, { poemResponse });
 
-  const { getByText, queryByText } = render(<PoemGenerator />);
+  const { getByText, queryByText, getByTestId } = render(<PoemGenerator />);
   expect(getByText("You haven't loaded any poems yet!")).toBeInTheDocument();
 
   ReactTestUtils.Simulate.click(getByText("Load a random poem"));
 
-  expect(queryByText("You haven't loaded any poems yet!")).not.toBeInTheDocument();
+  await wait(() => expect(queryByText("Loading...")).not.toBeInTheDocument()); 
 
-  // expect(queryByText("Loading...")).toBeInTheDocument();
+  expect(getByText("You haven't loaded any poems yet!")).toBeInTheDocument();
 
-  // await wait(() => expect(queryByText("Loading...")).not.toBeInTheDocument()); 
-  
-
-
-  // expect(queryByTestId("joke-text")).toBeInTheDocument();
   
 });

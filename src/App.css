@@ -39,6 +39,11 @@ h1 {
 	background: #eee;
 }
 
+.App > div > .joke {
+	display: grid;
+  align-items: start;
+}
+
 .App > div:nth-child(even) {
 	background: #ddd;
 }
