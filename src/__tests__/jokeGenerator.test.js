@@ -1,26 +1,24 @@
-import React from 'react';
-import { render, wait } from '@testing-library/react';
-import ReactTestUtils from 'react-dom/test-utils';
+import React from "react";
+import {render, wait} from "@testing-library/react";
+import ReactTestUtils from "react-dom/test-utils";
 import * as axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
-import Joke from '../joke';
-import JokeGenerator from '../jokeGenerator';
+import Joke from "../joke";
+import JokeGenerator from "../jokeGenerator";
 
-const mock = new MockAdapter(axios, { delayResponse: Math.random() * 500});
+const mock = new MockAdapter(axios, {delayResponse: Math.random() * 500});
 
-afterAll( () => mock.restore());
+afterAll(() => mock.restore());
 
 test("Joke component receives props and then renders text", () => {
   //Renders Joke component with some text prop.
-  
-  const { getByTestId } = render(
-    <Joke text="The funniest joke this year." />
-  );
 
-   //Expects Joke component to render correct text.
-   const el = getByTestId("joke-text");
-   expect(el.innerHTML).toBe("The funniest joke this year.");
+  const {getByTestId} = render(<Joke text="The funniest joke this year." />);
+
+  //Expects Joke component to render correct text.
+  const el = getByTestId("joke-text");
+  expect(el.innerHTML).toBe("The funniest joke this year.");
 });
 
 test("'JokeGenerator' component fetches a random joke and renders it", async () => {
@@ -30,7 +28,7 @@ test("'JokeGenerator' component fetches a random joke and renders it", async () 
     }
   });
 
-  const { getByText, queryByText } = render(<JokeGenerator />);
+  const {getByText, queryByText} = render(<JokeGenerator />);
   expect(getByText("You haven't loaded any joke yet!")).toBeInTheDocument();
 
   ReactTestUtils.Simulate.click(getByText("Load a random joke"));
@@ -39,7 +37,7 @@ test("'JokeGenerator' component fetches a random joke and renders it", async () 
 
   expect(queryByText("Loading...")).toBeInTheDocument();
 
-  await wait(() => expect(queryByText("Loading...")).not.toBeInTheDocument()); 
+  await wait(() => expect(queryByText("Loading...")).not.toBeInTheDocument());
 
   expect(getByText("You haven't loaded any joke yet!")).toBeInTheDocument();
 });

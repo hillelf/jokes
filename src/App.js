@@ -3,18 +3,21 @@ import React from "react";
 import "./App.css";
 import JokeGenerator from "./jokeGenerator";
 import PoemGenerator from "./poemGenerator";
+import QuoteGenerator from "./quoteGenerator";
 
 function App() {
   return (
     <div className="App">
-      <h1>Poems, Jokes and Webcams.</h1>
+      <h1>Poems, Jokes and Quotes</h1>
       <div>
         <PoemGenerator />
       </div>
       <div>
         <JokeGenerator />
       </div>
-      <div>{/* <QuoteGenerator /> */}</div>
+      <div>
+        <QuoteGenerator />
+      </div>
     </div>
   );
 }
